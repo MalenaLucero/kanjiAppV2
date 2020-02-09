@@ -1,21 +1,10 @@
-const mongoose = require('mongoose')
+function Word({word, reading, meaning, context, kanji, label}){
+    this.word = word
+    this.reading = reading
+    this.meaning = meaning
+    this.context = context
+    this.kanji = kanji
+    this.label = label
+}
 
-const wordSchema = new mongoose.Schema({
-  word:{
-      type: String,
-      required: true
-  },
-  reading:{
-      type: String
-  },
-  meaning:{
-      type: String
-  },
-  context:{
-      type: String
-  },
-  kanji:[],
-  labels:[]
-})
-
-module.exports = wordSchema
+module.exports = Word

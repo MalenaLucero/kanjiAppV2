@@ -9,4 +9,12 @@ router.get('/words', (req,res)=>{
   WordInstance.getWords(req,res)
 })
 
+router.get('/words/:word',(req,res)=>{
+  WordInstance.getWord(req,res)
+})
+
+router.post('/words', (req,res)=>{
+  WordInstance.addWord(req,res)
+})
+
 module.exports = router;
