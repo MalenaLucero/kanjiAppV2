@@ -1,3 +1,5 @@
+const getKanjiFromWord = require('../helpers/getKanjiFromWord')
+
 class WordController{
     constructor(wordService){
         this.wordService = wordService
@@ -23,6 +25,7 @@ class WordController{
         const body = req.body
         if(body.word){
             const newWord = await this.wordService.addWord(body) 
+            console.log(getKanjiFromWord(body.word))
             return res.sendStatus(200)
         }else{
             return res.sendStatus(400)
