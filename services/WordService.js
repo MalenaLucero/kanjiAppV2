@@ -4,7 +4,9 @@ const uri = `mongodb+srv://${myMongoClient.user}:${myMongoClient.password}@kanji
 const client = new MongoClient(uri);
 const Word = require('../models/Word')
 const getKanjiFromWord = require('../helpers/getKanjiFromWord')
-const fetch = require('node-fetch')
+
+const KanjiService = require('../services/KanjiService')
+const KanjiInstance = new KanjiService()
 
 class WordService{
     async getWords(){
@@ -28,9 +30,9 @@ class WordService{
     async addWord(body){
         try {
             await client.connect();
-            const newWord = await client.db("kanjiApp").collection("words").insertOne(new Word(body));
+            await client.db("kanjiApp").collection("words").insertOne(new Word(body));
             const newKanji = getKanjiFromWord(body.word)
-            console.log(newKanji)
+            KanjiInstance.addKanji(newKanji)
         } catch(error){
             console.error(error)
         }

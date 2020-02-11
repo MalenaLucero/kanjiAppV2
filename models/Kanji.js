@@ -1,4 +1,4 @@
-function Kanji({kanji, grade, strokeCount, meaning, kunReading, onReading, jlpt, unicode}){
+function Kanji(kanji, grade, strokeCount, meaning, kunReading, onReading, jlpt, unicode){
     this.kanji = kanji
     this.grade = grade
     this.strokeCount = strokeCount
