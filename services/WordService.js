@@ -31,11 +31,6 @@ class WordService{
             const newWord = await client.db("kanjiApp").collection("words").insertOne(new Word(body));
             const newKanji = getKanjiFromWord(body.word)
             console.log(newKanji)
-            for(let i = 0; i < newKanji.length; i++){
-                fetch('https://kanjiapi.dev/v1/kanji/' + newKanji[i])
-                    .then(res=>res.json())
-                    .then(res=>console.log(res))
-            }
         } catch(error){
             console.error(error)
         }
