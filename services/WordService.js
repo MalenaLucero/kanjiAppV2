@@ -32,7 +32,12 @@ class WordService{
             await client.connect();
             await client.db("kanjiApp").collection("words").insertOne(new Word(body));
             const newKanji = getKanjiFromWord(body.word)
-            KanjiInstance.addKanji(newKanji)
+            for(let i=0; i < newKanji.length; i++){
+                const kanji = await KanjiInstance.getOneKanji(newKanji[i])
+                if(!kanji){
+                    KanjiInstance.addKanji(newKanji[i])
+                }
+            }
         } catch(error){
             console.error(error)
         }

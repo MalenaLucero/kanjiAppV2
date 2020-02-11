@@ -26,10 +26,10 @@ class KanjiService{
             console.error(error)
         }
     }
-    async addKanji(arr){
+    async addKanji(fetchKanji){
         try{
             await client.connect();
-            const newKanjiInfo = await fetch(utf8.encode(`https://kanjiapi.dev/v1/kanji/${arr[0]}`)).then(res=>res.json()).then(res=> res)
+            const newKanjiInfo = await fetch(utf8.encode(`https://kanjiapi.dev/v1/kanji/${fetchKanji}`)).then(res=>res.json()).then(res=> res)
             const {kanji, grade, stroke_count, meanings, kun_readings, on_readings, jlpt, unicode} = newKanjiInfo
             const newKanji = new Kanji(kanji, grade, stroke_count, meanings, kun_readings, on_readings, jlpt, unicode)
             await client.db("kanjiApp").collection("kanji").insertOne(newKanji); 

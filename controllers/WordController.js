@@ -23,8 +23,9 @@ class WordController{
     }
     async addWord(req,res){
         const body = req.body
-        if(body.word){
-            const newWord = await this.wordService.addWord(body) 
+        const word = await this.wordService.getWord(body.word)
+        if(body.word && !word){
+            await this.wordService.addWord(body) 
             return res.sendStatus(200)
         }else{
             return res.sendStatus(400)
